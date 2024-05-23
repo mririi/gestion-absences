@@ -1,0 +1,48 @@
+﻿@model IEnumerable<gestionabscence.Models.Student>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Group)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Group.GroupName)
+            </td>
+            <td>
+                        @if(item.Group == null)
+                        {
+                              <a class="btn btn-outline-success" asp-action="Edit" asp-route-id="@item.StudentId">Assing a group <span class="fa fa-edit"></span></a>
+                        }
+               
+                <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@item.StudentId">Details <span class="fade fa-eye"></span></a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>

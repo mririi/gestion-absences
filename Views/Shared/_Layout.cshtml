@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GestionAbscences</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    @* <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" /> *@
+    <link rel="stylesheet" href="~/sidebare/css/style.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="~/GestionAbscences.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="wrapper d-flex align-items-stretch">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <nav id="sidebar" class="active">
+                <h1><a href="index.html" class="logo">M.</a></h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#"><span class="fa fa-home"></span> Home</a>
+                </li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                    <li>
+                            <a asp-area="" asp-controller="Users" asp-action="Index"><span class="fa fa-user"></span> Users</a>
+                    </li>
+                    }
+                <li>
+                        <a asp-area="" asp-controller="Groups" asp-action="Index"><span class="fa fa-sticky-note"></span> Groups</a>
+                </li>
+                <li>
+                        <a asp-area="" asp-controller="Students" asp-action="Index"><span class="fa fa-users"></span> Students</a>
+                </li>
+                <li>
+                    <a asp-area="" asp-controller="Professors" asp-action="Index"><span class="fa fa-user-circle-o"></span> Professors</a>
+                </li>
+                <li>
+                        <a asp-area="" asp-controller="Subjects" asp-action="Index"><span class="fa fa-book"></span> Subjects</a>
+                </li>
+                    <li>
+                        <a asp-area="" asp-controller="Absences" asp-action="Index"><span class="fa fa-user-times"></span> Absences</a>
+                    </li>
+                <li>
+                    <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
+                </li>
+            </ul>
+
+         
+        </nav>
+        }
+
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+             @if (User.Identity.IsAuthenticated)
+            {
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                             <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline">
+                                <li class="nav-item active">
+                                    <button type="submit" class="btn btn-link nav-link" style="cursor: pointer;">Logout</button>
+                                </li>
+                             </form>
+                            
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            }
+            <div class="container">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+
+           @*  <div class="footer">
+                <p>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+                </p>
+            </div> *@
+            
+        </div>
+    </div>
+    @* <header>
+        @if(User.Identity.IsAuthenticated)
+        {
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">GestionAbscences</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                            @if (User.IsInRole("Admin"))
+                            {
+                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                                </li>
+                            }
+                           
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        }
+    </header> *@
+   @*  <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div> *@
+
+   @*  <footer class="border-top footer text-muted p-6">
+        <div class="container">
+            &copy; 2024 - GestionAbscences - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer> *@
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/sidebare/js/popper.js"></script>
+    <script src="~/sidebare/js/main.js"></script>
+    @* <script src="~/js/site.js" asp-append-version="true"></script> *@
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
